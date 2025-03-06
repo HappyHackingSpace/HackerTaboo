@@ -32,7 +32,6 @@ We welcome contributions from everyone! Follow these steps to contribute new car
   - `computer-science.md`
   - `cybersecurity.md`
   - `electronics.md`
-  - `hacking.md`
   - `open-source.md`
 - Open the relevant category file and add a new entry at the end using the following format:
   
@@ -80,7 +79,7 @@ git push origin main
 ✅ Make sure your cards are **clear and concise**.
 ✅ Avoid using **taboo words** in the description.
 ✅ Maintain a **neutral and educational** tone.
-✅ Ensure the keyword is relevant to **hacking, tech, or electronics**.
+✅ Ensure the keyword is relevant.
 ✅ Follow the existing format for consistency.
 
 ---
