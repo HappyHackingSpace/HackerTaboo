@@ -22,6 +22,12 @@ body:
       required: true
   - type: textarea
     attributes:
+      label: Category
+      description: Enter the category e.g., Computer Science, Cybersecurity, Electronics, Open Source
+    validations:
+      required: true
+  - type: textarea
+    attributes:
       label: Source Language
       description: Enter the language of the original term
     validations:
