@@ -14,63 +14,47 @@ Welcome to **Hacker Taboo!** This repository is dedicated to creating a fun and 
 
 ## 🤝 How to Contribute
 
-We welcome contributions from everyone! Follow these steps to contribute new cards or improve existing ones.
+We welcome contributions from everyone! Instead of committing changes directly, we use GitHub **Issues** to submit new Taboo cards. Follow the steps below to add a new card.
 
-### 1️⃣ Fork & Clone the Repository
+### 📝 Submit a New Taboo Card
 
-1. Click the **Fork** button (top right of the repo) to create your own copy.
-2. Clone your forked repository:
-   ```sh
-   git clone https://github.com/happyhackingspace/HackerTaboo.git
-   cd HackerTaboo
-   ```
+1. Go to the **Issues** section of this repository.
+2. Click on **New Issue**.
+3. Select the **"New Taboo Card"** issue template.
+4. Fill in the template with your new keyword and its details.
+5. Click **Submit new issue** – our team will review and merge it into the repository!
 
-### 2️⃣ Add a New Card
+### 📋 Issue Template Format
 
-- Navigate to the `cards/` directory.
-- Inside `cards/`, you will find category-based Markdown files:
-  - `computer-science.md`
-  - `cybersecurity.md`
-  - `electronics.md`
-  - `open-source.md`
-- Open the relevant category file and add a new entry at the end using the following format:
-  
-  ```md
-  ## Keyword: [Main term]
-  
-  **Taboo Words:** word1, word2, word3, word4, word5
-  
-  **Description:**
-  A short and clear description of the keyword without using taboo words.
-  ```
-
-Example (inside `cybersecurity.md`):
+When submitting a new card, follow this format:
 
 ```md
-## Keyword: Firewall
+**Keyword:** [Main term]
+
+**Taboo Words:** word1, word2, word3, word4, word5
+
+**Source Language:** [e.g., English]
+
+**Destination Language:** [e.g., Spanish]
+
+**Description:**
+A short and clear description of the keyword without using taboo words.
+```
+
+Example:
+
+```md
+**Keyword:** Firewall
 
 **Taboo Words:** security, network, block, filter, protection
+
+**Source Language:** English
+
+**Destination Language:** Spanish
 
 **Description:**
 A system that monitors and controls incoming and outgoing network traffic based on predefined security rules.
 ```
-
-### 3️⃣ Commit & Push Changes
-
-```sh
-git add cards/
-
-git commit -m "Added new taboo card for [keyword] in [category]"
-
-git push origin main
-```
-
-### 4️⃣ Create a Pull Request (PR)
-
-1. Go to your forked repository on GitHub.
-2. Click on **Pull Requests** > **New Pull Request**.
-3. Select **compare across forks** and choose your fork.
-4. Add a description of your contribution and submit the PR!
 
 ---
 
@@ -80,7 +64,7 @@ git push origin main
 ✅ Avoid using **taboo words** in the description.
 ✅ Maintain a **neutral and educational** tone.
 ✅ Ensure the keyword is relevant.
-✅ Follow the existing format for consistency.
+✅ Include **source and destination languages** for multilingual support.
 
 ---
 
@@ -92,8 +76,7 @@ This project is licensed under the [MIT License](LICENSE). Feel free to contribu
 
 ## 🌎 Join the Community
 
-💬 **Discussions:** [GitHub Discussions](https://github.com/YOUR-REPO/discussions)
- **Follow us on :**
+Follow us on:
 - 🌐 [Website](https://happyhacking.space)
 - 🎥 [YouTube](https://www.youtube.com/@HappyHackingSpace)
 - 📷 [Instagram](https://www.instagram.com/happyhackingspace)
@@ -106,5 +89,6 @@ This project is licensed under the [MIT License](LICENSE). Feel free to contribu
 - 🎵 [TikTok](https://www.tiktok.com/@happyhackingspace)
 - 🟢 [Kick](https://kick.com/happyhackingspace)
 - 👥 [Kommunity](https://kommunity.com/diyarbakir-happy-hacking-space)
+- 💻 [GitHub](https://github.com/happyhackingspace)
 
 Happy Hacking!
