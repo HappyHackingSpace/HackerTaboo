@@ -1,24 +1,40 @@
----
-name: "New Taboo Card"
-description: "Suggest a new Taboo-style card for Hacker Taboo"
+name: New Taboo Card
+description: Suggest a new Taboo-style card for Hacker Taboo
 title: "[New Card] <Keyword Here>"
-labels: [new-card, contribution]
-assignees: ""
----
+labels:  [new-card]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this new card request!
 
-## New Taboo Card Suggestion
-
-**Keyword:**
-> _[Enter the main term for the card]_ 
-
-**Taboo Words:**
-> _[List 5 words that cannot be used in the description]_ 
-
-**Source Language:**
-> _[Enter the language of the original term]_ 
-
-**Destination Language:**
-> _[Enter the target language for translation (if applicable)]_ 
-
-**Description:**
-> _[Write a short and clear description of the keyword without using taboo words]_
+  - type: textarea
+    attributes:
+      label: Keyword
+      description: Enter the main term for the card
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Taboo Words
+      description: List 5 words that cannot be used in the description
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Source Language
+      description: Enter the language of the original term
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Destination Language
+      description: Enter the target language for translation
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Description
+      description: Write a short and clear description of the keyword without using taboo words
+    validations:
+      required: false
