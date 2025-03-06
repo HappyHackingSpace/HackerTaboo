@@ -1,0 +1,24 @@
+---
+name: "New Taboo Card"
+description: "Suggest a new Taboo-style card for Hacker Taboo"
+title: "[New Card] <Keyword Here>"
+labels: [new-card, contribution]
+assignees: ""
+---
+
+## New Taboo Card Suggestion
+
+**Keyword:**
+> _[Enter the main term for the card]_ 
+
+**Taboo Words:**
+> _[List 5 words that cannot be used in the description]_ 
+
+**Source Language:**
+> _[Enter the language of the original term]_ 
+
+**Destination Language:**
+> _[Enter the target language for translation (if applicable)]_ 
+
+**Description:**
+> _[Write a short and clear description of the keyword without using taboo words]_
