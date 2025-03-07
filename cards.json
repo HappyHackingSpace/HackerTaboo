@@ -1,0 +1,11 @@
+{
+  "keywords": [
+    {
+      "keyword": "Firewall",
+      "taboo_words": ["security", "network", "block", "filter", "protection"],
+      "source_language": "English",
+      "destination_language": "English",
+      "description": "A system that monitors and controls incoming and outgoing network traffic based on predefined security rules."
+    }
+  ]
+}
