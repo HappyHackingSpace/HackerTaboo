@@ -33,6 +33,17 @@
       "source_language": "",
       "destination_language": "",
       "description": ""
+    },
+    {
+      "keyword": "BUG",
+      "category": "CS",
+      "taboo_words": [
+        "error",
+        "Failure"
+      ],
+      "source_language": "English",
+      "destination_language": "English",
+      "description": "_No response_"
     }
   ]
 }
