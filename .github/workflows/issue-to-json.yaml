@@ -19,7 +19,7 @@ jobs:
 
       - name: Extract and Parse Issue Data
         run: |
-          echo "Extracting issue data using Go..."
+          echo "Extracting issue data..."
           cat <<EOF > parser.go
           package main
 
@@ -120,9 +120,7 @@ jobs:
           }
           EOF
 
-          ISSUE_BODY=$(jq -R -s . <<< "${{ github.event.issue.body }}")
-          export ISSUE_BODY="$ISSUE_BODY"
-          go run parser.go
+          export ISSUE_BODY="${{ github.event.issue.body }}" go run parser.go
 
       - name: Commit and push changes
         run: |
