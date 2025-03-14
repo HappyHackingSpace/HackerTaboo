@@ -16,12 +16,13 @@ jobs:
         id: extract
         run: |
           echo "Extracting issue data..."
-          KEYWORD=$(echo "${{ github.event.issue.body }}" | awk -F'### Keyword' '{print $2}' | awk 'NR==2' | xargs)
-          TABOO_WORDS=$(echo "${{ github.event.issue.body }}" | awk -F'### Taboo Words' '{print $2}' | awk 'NR==2' | xargs | sed 's/,/","/g')
-          CATEGORY=$(echo "${{ github.event.issue.body }}" | awk -F'### Category' '{print $2}' | awk 'NR==2' | xargs)
-          SOURCE_LANGUAGE=$(echo "${{ github.event.issue.body }}" | awk -F'### Source Language' '{print $2}' | awk 'NR==2' | xargs)
-          DESTINATION_LANGUAGE=$(echo "${{ github.event.issue.body }}" | awk -F'### Destination Language' '{print $2}' | awk 'NR==2' | xargs)
-          DESCRIPTION=$(echo "${{ github.event.issue.body }}" | awk -F'### Description' '{print $2}' | awk 'NR==2' | xargs)
+          
+          KEYWORD=$(echo "${{ github.event.issue.body }}" | grep -A1 "### Keyword" | tail -n1 | xargs)
+          TABOO_WORDS=$(echo "${{ github.event.issue.body }}" | grep -A1 "### Taboo Words" | tail -n1 | tr ',' '\n' | sed 's/^ \+//g' | jq -R . | jq -s . | tr -d '\n')
+          CATEGORY=$(echo "${{ github.event.issue.body }}" | grep -A1 "### Category" | tail -n1 | xargs)
+          SOURCE_LANGUAGE=$(echo "${{ github.event.issue.body }}" | grep -A1 "### Source Language" | tail -n1 | xargs)
+          DESTINATION_LANGUAGE=$(echo "${{ github.event.issue.body }}" | grep -A1 "### Destination Language" | tail -n1 | xargs)
+          DESCRIPTION=$(echo "${{ github.event.issue.body }}" | grep -A1 "### Description" | tail -n1 | xargs)
           
           echo "KEYWORD=$KEYWORD" >> $GITHUB_ENV
           echo "TABOO_WORDS=$TABOO_WORDS" >> $GITHUB_ENV
@@ -38,7 +39,7 @@ jobs:
             echo '{ "keywords": [] }' > $FILE
           fi
 
-          jq ".keywords += [{\"keyword\": \"$KEYWORD\", \"category\": \"$CATEGORY\", \"taboo_words\": [\"$(echo $TABOO_WORDS | sed 's/ /\",\"/g')\"], \"source_language\": \"$SOURCE_LANGUAGE\", \"destination_language\": \"$DESTINATION_LANGUAGE\", \"description\": \"$DESCRIPTION\"}]" $FILE > temp.json && mv temp.json $FILE
+          jq ".keywords += [{\"keyword\": \"$KEYWORD\", \"category\": \"$CATEGORY\", \"taboo_words\": $TABOO_WORDS, \"source_language\": \"$SOURCE_LANGUAGE\", \"destination_language\": \"$DESTINATION_LANGUAGE\", \"description\": \"$DESCRIPTION\"}]" $FILE > temp.json && mv temp.json $FILE
 
       - name: Commit and push changes
         run: |
