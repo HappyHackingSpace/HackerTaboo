@@ -10,12 +10,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Go
-        uses: actions/setup-go@v3
+        uses: actions/setup-go@v5
         with:
-          go-version: '1.20'
+          go-version: '1.23'
 
       - name: Extract and Parse Issue Data
         run: |
@@ -74,6 +74,7 @@ jobs:
 
           func main() {
               issueBody := os.Getenv("ISSUE_BODY")
+              issueBody = strings.ReplaceAll(issueBody, "\\n", "\n") // Ensure newline formatting
 
               data := Keyword{
                   Keyword:            extractValue(issueBody, "Keyword"),
@@ -105,7 +106,7 @@ jobs:
                       os.Exit(1)
                   }
               } else {
-                  jsonData = map[string][]Keyword{"keywords": {}}
+                  jsonData = map[string][]Keyword{"keywords": []}
               }
 
               if !isDuplicate(data, jsonData["keywords"]) {
@@ -119,7 +120,7 @@ jobs:
           }
           EOF
 
-          ISSUE_BODY=$(echo '${{ github.event.issue.body }}' | jq -R -s .)
+          ISSUE_BODY=$(jq -R -s . <<< "${{ github.event.issue.body }}")
           export ISSUE_BODY="$ISSUE_BODY"
           go run parser.go
 
