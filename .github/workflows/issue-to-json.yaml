@@ -1,0 +1,49 @@
+name: "Issue to JSON"
+
+on:
+  issues:
+    types:
+      - closed
+
+jobs:
+  update-json:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Extract Issue Data
+        id: extract
+        run: |
+          echo "Extracting issue data..."
+          KEYWORD=$(echo "${{ github.event.issue.body }}" | awk -F'### Keyword' '{print $2}' | awk 'NR==2' | xargs)
+          TABOO_WORDS=$(echo "${{ github.event.issue.body }}" | awk -F'### Taboo Words' '{print $2}' | awk 'NR==2' | xargs | sed 's/,/","/g')
+          CATEGORY=$(echo "${{ github.event.issue.body }}" | awk -F'### Category' '{print $2}' | awk 'NR==2' | xargs)
+          SOURCE_LANGUAGE=$(echo "${{ github.event.issue.body }}" | awk -F'### Source Language' '{print $2}' | awk 'NR==2' | xargs)
+          DESTINATION_LANGUAGE=$(echo "${{ github.event.issue.body }}" | awk -F'### Destination Language' '{print $2}' | awk 'NR==2' | xargs)
+          DESCRIPTION=$(echo "${{ github.event.issue.body }}" | awk -F'### Description' '{print $2}' | awk 'NR==2' | xargs)
+          
+          echo "KEYWORD=$KEYWORD" >> $GITHUB_ENV
+          echo "TABOO_WORDS=$TABOO_WORDS" >> $GITHUB_ENV
+          echo "CATEGORY=$CATEGORY" >> $GITHUB_ENV
+          echo "SOURCE_LANGUAGE=$SOURCE_LANGUAGE" >> $GITHUB_ENV
+          echo "DESTINATION_LANGUAGE=$DESTINATION_LANGUAGE" >> $GITHUB_ENV
+          echo "DESCRIPTION=$DESCRIPTION" >> $GITHUB_ENV
+
+      - name: Update cards.json
+        run: |
+          echo "Updating cards.json..."
+          FILE=cards.json
+          if [ ! -f "$FILE" ]; then
+            echo '{ "keywords": [] }' > $FILE
+          fi
+
+          jq ".keywords += [{\"keyword\": \"$KEYWORD\", \"category\": \"$CATEGORY\", \"taboo_words\": [\"$(echo $TABOO_WORDS | sed 's/ /\",\"/g')\"], \"source_language\": \"$SOURCE_LANGUAGE\", \"destination_language\": \"$DESTINATION_LANGUAGE\", \"description\": \"$DESCRIPTION\"}]" $FILE > temp.json && mv temp.json $FILE
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
+          git add cards.json
+          git commit -m "Update cards.json with closed issue #${{ github.event.issue.number }}"
+          git push
