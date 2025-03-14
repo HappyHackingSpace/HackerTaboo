@@ -13,6 +13,17 @@
       "source_language": "English",
       "destination_language": "Spanish",
       "description": "A system that monitors and controls incoming and outgoing network traffic based on predefined security rules."
+    },
+    {
+      "keyword": "BUG",
+      "category": "CS",
+      "taboo_words": [
+        "error",
+        "Failure"
+      ],
+      "source_language": "English",
+      "destination_language": "English",
+      "description": "_No response_"
     }
   ]
 }
