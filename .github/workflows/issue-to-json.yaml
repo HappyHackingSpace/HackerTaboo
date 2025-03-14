@@ -10,23 +10,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       - name: Set up Go
-        uses: actions/setup-go@v5
+        uses: actions/setup-go@v3
         with:
-          go-version: '1.23'
+          go-version: '1.20'
 
       - name: Extract and Parse Issue Data
         run: |
-          echo "Extracting issue data..."
+          echo "Extracting issue data using Go..."
           cat <<EOF > parser.go
           package main
 
           import (
               "encoding/json"
               "fmt"
-              "io/ioutil"
+              "io"
               "os"
               "regexp"
               "strings"
@@ -42,7 +42,7 @@ jobs:
           }
 
           func extractValue(issueBody, label string) string {
-              re := regexp.MustCompile(fmt.Sprintf(`(?m)^### %s\n([^#]+)`, label))
+              re := regexp.MustCompile(fmt.Sprintf(`(?m)^### %s\s*\n([^#]+)`, label))
               match := re.FindStringSubmatch(issueBody)
               if len(match) > 1 {
                   return strings.TrimSpace(match[1])
@@ -55,7 +55,21 @@ jobs:
               if raw == "" {
                   return []string{}
               }
-              return strings.FieldsFunc(raw, func(r rune) bool { return r == ',' || r == '\n' })
+              return strings.Split(raw, ", ")
+          }
+
+          func isDuplicate(entry Keyword, existing []Keyword) bool {
+              for _, k := range existing {
+                  if k.Keyword == entry.Keyword &&
+                     k.Category == entry.Category &&
+                     strings.Join(k.TabooWords, ",") == strings.Join(entry.TabooWords, ",") &&
+                     k.SourceLanguage == entry.SourceLanguage &&
+                     k.DestinationLanguage == entry.DestinationLanguage &&
+                     k.Description == entry.Description {
+                      return true
+                  }
+              }
+              return false
           }
 
           func main() {
@@ -70,8 +84,8 @@ jobs:
                   Description:        extractValue(issueBody, "Description"),
               }
 
-              if data.Keyword == "" {
-                  fmt.Println("No valid keyword found. Skipping update.")
+              if data.Keyword == "" || data.SourceLanguage == "" || data.DestinationLanguage == "" {
+                  fmt.Println("Incomplete data found. Skipping update.")
                   return
               }
 
@@ -83,27 +97,29 @@ jobs:
               defer file.Close()
 
               var jsonData map[string][]Keyword
-              fileData, _ := ioutil.ReadAll(file)
+              fileData, _ := io.ReadAll(file)
               if len(fileData) > 0 {
                   err = json.Unmarshal(fileData, &jsonData)
                   if err != nil {
                       fmt.Println("Error parsing JSON:", err)
                       os.Exit(1)
                   }
-              }
-
-              if jsonData["keywords"] == nil {
+              } else {
                   jsonData = map[string][]Keyword{"keywords": {}}
               }
 
-              jsonData["keywords"] = append(jsonData["keywords"], data)
+              if !isDuplicate(data, jsonData["keywords"]) {
+                  jsonData["keywords"] = append(jsonData["keywords"], data)
 
-              newFileData, _ := json.MarshalIndent(jsonData, "", "  ")
-              ioutil.WriteFile("cards.json", newFileData, 0644)
+                  newFileData, _ := json.MarshalIndent(jsonData, "", "  ")
+                  os.WriteFile("cards.json", newFileData, 0644)
+              } else {
+                  fmt.Println("Duplicate entry detected. Skipping update.")
+              }
           }
           EOF
 
-          ISSUE_BODY=$(jq -r . <<< "${{ github.event.issue.body }}")
+          ISSUE_BODY=$(echo '${{ github.event.issue.body }}' | jq -R -s .)
           export ISSUE_BODY="$ISSUE_BODY"
           go run parser.go
 
