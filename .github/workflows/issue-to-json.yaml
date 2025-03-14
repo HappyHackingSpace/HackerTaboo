@@ -106,7 +106,7 @@ jobs:
                       os.Exit(1)
                   }
               } else {
-                  jsonData = map[string][]Keyword{"keywords": []}
+                  jsonData = map[string][]Keyword{"keywords": {}}
               }
 
               if !isDuplicate(data, jsonData["keywords"]) {
