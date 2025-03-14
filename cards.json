@@ -23,6 +23,16 @@
       "source_language": "",
       "destination_language": "",
       "description": ""
+    },
+    {
+      "keyword": "",
+      "category": "",
+      "taboo_words": [
+        ""
+      ],
+      "source_language": "",
+      "destination_language": "",
+      "description": ""
     }
   ]
 }
