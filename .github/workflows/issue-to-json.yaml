@@ -10,36 +10,102 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Extract Issue Data
-        id: extract
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.23'
+
+      - name: Extract and Parse Issue Data
         run: |
           echo "Extracting issue data..."
-          
-          KEYWORD=$(echo "${{ github.event.issue.body }}" | grep -A1 "### Keyword" | tail -n1 | xargs)
-          TABOO_WORDS=$(echo "${{ github.event.issue.body }}" | grep -A1 "### Taboo Words" | tail -n1 | tr ',' '\n' | sed 's/^ \+//g' | jq -R . | jq -s . | tr -d '\n')
-          CATEGORY=$(echo "${{ github.event.issue.body }}" | grep -A1 "### Category" | tail -n1 | xargs)
-          SOURCE_LANGUAGE=$(echo "${{ github.event.issue.body }}" | grep -A1 "### Source Language" | tail -n1 | xargs)
-          DESTINATION_LANGUAGE=$(echo "${{ github.event.issue.body }}" | grep -A1 "### Destination Language" | tail -n1 | xargs)
-          DESCRIPTION=$(echo "${{ github.event.issue.body }}" | grep -A1 "### Description" | tail -n1 | xargs)
-          
-          echo "KEYWORD=$KEYWORD" >> $GITHUB_ENV
-          echo "TABOO_WORDS=$TABOO_WORDS" >> $GITHUB_ENV
-          echo "CATEGORY=$CATEGORY" >> $GITHUB_ENV
-          echo "SOURCE_LANGUAGE=$SOURCE_LANGUAGE" >> $GITHUB_ENV
-          echo "DESTINATION_LANGUAGE=$DESTINATION_LANGUAGE" >> $GITHUB_ENV
-          echo "DESCRIPTION=$DESCRIPTION" >> $GITHUB_ENV
+          cat <<EOF > parser.go
+          package main
 
-      - name: Update cards.json
-        run: |
-          echo "Updating cards.json..."
-          FILE=cards.json
-          if [ ! -f "$FILE" ]; then
-            echo '{ "keywords": [] }' > $FILE
-          fi
+          import (
+              "encoding/json"
+              "fmt"
+              "io/ioutil"
+              "os"
+              "regexp"
+              "strings"
+          )
 
-          jq ".keywords += [{\"keyword\": \"$KEYWORD\", \"category\": \"$CATEGORY\", \"taboo_words\": $TABOO_WORDS, \"source_language\": \"$SOURCE_LANGUAGE\", \"destination_language\": \"$DESTINATION_LANGUAGE\", \"description\": \"$DESCRIPTION\"}]" $FILE > temp.json && mv temp.json $FILE
+          type Keyword struct {
+              Keyword            string   `json:"keyword"`
+              Category           string   `json:"category"`
+              TabooWords         []string `json:"taboo_words"`
+              SourceLanguage     string   `json:"source_language"`
+              DestinationLanguage string   `json:"destination_language"`
+              Description        string   `json:"description"`
+          }
+
+          func extractValue(issueBody, label string) string {
+              re := regexp.MustCompile(fmt.Sprintf(`(?m)^### %s\n([^#]+)`, label))
+              match := re.FindStringSubmatch(issueBody)
+              if len(match) > 1 {
+                  return strings.TrimSpace(match[1])
+              }
+              return ""
+          }
+
+          func extractList(issueBody, label string) []string {
+              raw := extractValue(issueBody, label)
+              if raw == "" {
+                  return []string{}
+              }
+              return strings.FieldsFunc(raw, func(r rune) bool { return r == ',' || r == '\n' })
+          }
+
+          func main() {
+              issueBody := os.Getenv("ISSUE_BODY")
+
+              data := Keyword{
+                  Keyword:            extractValue(issueBody, "Keyword"),
+                  Category:           extractValue(issueBody, "Category"),
+                  TabooWords:         extractList(issueBody, "Taboo Words"),
+                  SourceLanguage:     extractValue(issueBody, "Source Language"),
+                  DestinationLanguage: extractValue(issueBody, "Destination Language"),
+                  Description:        extractValue(issueBody, "Description"),
+              }
+
+              if data.Keyword == "" {
+                  fmt.Println("No valid keyword found. Skipping update.")
+                  return
+              }
+
+              file, err := os.OpenFile("cards.json", os.O_RDWR|os.O_CREATE, 0644)
+              if err != nil {
+                  fmt.Println("Error opening file:", err)
+                  os.Exit(1)
+              }
+              defer file.Close()
+
+              var jsonData map[string][]Keyword
+              fileData, _ := ioutil.ReadAll(file)
+              if len(fileData) > 0 {
+                  err = json.Unmarshal(fileData, &jsonData)
+                  if err != nil {
+                      fmt.Println("Error parsing JSON:", err)
+                      os.Exit(1)
+                  }
+              }
+
+              if jsonData["keywords"] == nil {
+                  jsonData = map[string][]Keyword{"keywords": {}}
+              }
+
+              jsonData["keywords"] = append(jsonData["keywords"], data)
+
+              newFileData, _ := json.MarshalIndent(jsonData, "", "  ")
+              ioutil.WriteFile("cards.json", newFileData, 0644)
+          }
+          EOF
+
+          ISSUE_BODY=$(jq -r . <<< "${{ github.event.issue.body }}")
+          export ISSUE_BODY="$ISSUE_BODY"
+          go run parser.go
 
       - name: Commit and push changes
         run: |
