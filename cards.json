@@ -8,7 +8,11 @@
         "network",
         "block",
         "filter",
-        "protection"
+        "protection",
+        "confidentiality",
+        "integrity",
+        "accountability",
+        "availability"
       ],
       "source_language": "English",
       "destination_language": "Spanish",
@@ -19,7 +23,7 @@
       "category": "CS",
       "taboo_words": [
         "error",
-        "Failure"
+        "failure"
       ],
       "source_language": "English",
       "destination_language": "English",
