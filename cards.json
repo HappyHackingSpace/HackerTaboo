@@ -24,6 +24,16 @@
       "source_language": "English",
       "destination_language": "English",
       "description": "_No response_"
+    },
+    {
+      "keyword": "protection,\n        confidentiality,\n        integrity,\n        accountability,\n        availability",
+      "category": "Security Services",
+      "taboo_words": [
+        "protection,\n        confidentiality,\n        integrity,\n        accountability,\n        availability (any of four for selected word)"
+      ],
+      "source_language": "English",
+      "destination_language": "English",
+      "description": "This issue may be not directly implemented the code, edit script with respect to my descriptions."
     }
   ]
 }
