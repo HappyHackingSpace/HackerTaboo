@@ -24,6 +24,20 @@
       "source_language": "English",
       "destination_language": "English",
       "description": "_No response_"
+    },
+    {
+      "keyword": "Encryption",
+      "category": "Cryptography",
+      "taboo_words": [
+        "code",
+        "secure",
+        "data",
+        "protect",
+        "algorithm"
+      ],
+      "source_language": "English",
+      "destination_language": "English",
+      "description": "A method of transforming information into an unreadable format to prevent unauthorized access."
     }
   ]
 }
