@@ -38,6 +38,664 @@
       "source_language": "English",
       "destination_language": "English",
       "description": "A method of transforming information into an unreadable format to prevent unauthorized access."
+    },
+    {
+      "keyword": "Phishing",
+      "category": "Cybersecurity",
+      "taboo_words": [
+        "email",
+        "scam",
+        "link",
+        "fake",
+        "password"
+      ],
+      "source_language": "English",
+      "destination_language": "English",
+      "description": "A social engineering attack that tricks people into revealing sensitive information by impersonating a trusted party."
+    },
+    {
+      "keyword": "Ransomware",
+      "category": "Cybersecurity",
+      "taboo_words": [
+        "encrypt",
+        "money",
+        "files",
+        "pay",
+        "malware"
+      ],
+      "source_language": "English",
+      "destination_language": "English",
+      "description": "Malicious software that locks a victim's data and demands payment for its release."
+    },
+    {
+      "keyword": "Zero-day",
+      "category": "Cybersecurity",
+      "taboo_words": [
+        "vulnerability",
+        "exploit",
+        "unknown",
+        "patch",
+        "day"
+      ],
+      "source_language": "English",
+      "destination_language": "English",
+      "description": "A flaw that is exploited before the vendor knows about it or can fix it."
+    },
+    {
+      "keyword": "Honeypot",
+      "category": "Cybersecurity",
+      "taboo_words": [
+        "trap",
+        "attacker",
+        "fake",
+        "lure",
+        "decoy"
+      ],
+      "source_language": "English",
+      "destination_language": "English",
+      "description": "A deliberately vulnerable system set up to attract and study attackers."
+    },
+    {
+      "keyword": "Malware",
+      "category": "Cybersecurity",
+      "taboo_words": [
+        "virus",
+        "software",
+        "malicious",
+        "infect",
+        "computer"
+      ],
+      "source_language": "English",
+      "destination_language": "English",
+      "description": "Any software intentionally designed to cause damage or gain unauthorized access."
+    },
+    {
+      "keyword": "Backdoor",
+      "category": "Cybersecurity",
+      "taboo_words": [
+        "access",
+        "secret",
+        "hidden",
+        "bypass",
+        "entry"
+      ],
+      "source_language": "English",
+      "destination_language": "English",
+      "description": "A covert method of bypassing normal authentication to access a system."
+    },
+    {
+      "keyword": "Botnet",
+      "category": "Cybersecurity",
+      "taboo_words": [
+        "zombie",
+        "network",
+        "infected",
+        "control",
+        "DDoS"
+      ],
+      "source_language": "English",
+      "destination_language": "English",
+      "description": "A network of compromised machines remotely controlled by an attacker."
+    },
+    {
+      "keyword": "Sandbox",
+      "category": "Cybersecurity",
+      "taboo_words": [
+        "isolate",
+        "run",
+        "safe",
+        "environment",
+        "test"
+      ],
+      "source_language": "English",
+      "destination_language": "English",
+      "description": "An isolated environment where untrusted code can run without harming the host."
+    },
+    {
+      "keyword": "CTF",
+      "category": "Hacking Culture",
+      "taboo_words": [
+        "capture",
+        "flag",
+        "competition",
+        "challenge",
+        "hack"
+      ],
+      "source_language": "English",
+      "destination_language": "English",
+      "description": "A security competition where players solve challenges to find hidden tokens."
+    },
+    {
+      "keyword": "Social Engineering",
+      "category": "Cybersecurity",
+      "taboo_words": [
+        "manipulate",
+        "human",
+        "trick",
+        "trust",
+        "psychology"
+      ],
+      "source_language": "English",
+      "destination_language": "English",
+      "description": "Exploiting human behavior rather than technical flaws to breach security."
+    },
+    {
+      "keyword": "Penetration Test",
+      "category": "Cybersecurity",
+      "taboo_words": [
+        "security",
+        "authorized",
+        "attack",
+        "assess",
+        "vulnerabilities"
+      ],
+      "source_language": "English",
+      "destination_language": "English",
+      "description": "An authorized simulated attack used to evaluate the security of a system."
+    },
+    {
+      "keyword": "Brute Force",
+      "category": "Cybersecurity",
+      "taboo_words": [
+        "password",
+        "try",
+        "guess",
+        "combinations",
+        "attack"
+      ],
+      "source_language": "English",
+      "destination_language": "English",
+      "description": "Attempting every possible combination until the correct one is found."
+    },
+    {
+      "keyword": "SQL Injection",
+      "category": "Cybersecurity",
+      "taboo_words": [
+        "database",
+        "query",
+        "input",
+        "attack",
+        "web"
+      ],
+      "source_language": "English",
+      "destination_language": "English",
+      "description": "Inserting malicious database commands through unsanitized user input."
+    },
+    {
+      "keyword": "XSS",
+      "category": "Cybersecurity",
+      "taboo_words": [
+        "script",
+        "website",
+        "inject",
+        "browser",
+        "JavaScript"
+      ],
+      "source_language": "English",
+      "destination_language": "English",
+      "description": "Injecting malicious scripts into pages viewed by other users."
+    },
+    {
+      "keyword": "VPN",
+      "category": "Networking",
+      "taboo_words": [
+        "tunnel",
+        "private",
+        "encrypt",
+        "network",
+        "IP"
+      ],
+      "source_language": "English",
+      "destination_language": "English",
+      "description": "An encrypted connection that carries traffic privately across a public network."
+    },
+    {
+      "keyword": "Algorithm",
+      "category": "CS",
+      "taboo_words": [
+        "steps",
+        "problem",
+        "solve",
+        "instructions",
+        "compute"
+      ],
+      "source_language": "English",
+      "destination_language": "English",
+      "description": "A finite sequence of well-defined steps for solving a problem."
+    },
+    {
+      "keyword": "Recursion",
+      "category": "CS",
+      "taboo_words": [
+        "function",
+        "itself",
+        "call",
+        "base",
+        "repeat"
+      ],
+      "source_language": "English",
+      "destination_language": "English",
+      "description": "A technique where a function solves a problem by calling itself on smaller inputs."
+    },
+    {
+      "keyword": "Compiler",
+      "category": "CS",
+      "taboo_words": [
+        "code",
+        "translate",
+        "machine",
+        "language",
+        "program"
+      ],
+      "source_language": "English",
+      "destination_language": "English",
+      "description": "A program that translates source code into machine code before execution."
+    },
+    {
+      "keyword": "Binary",
+      "category": "CS",
+      "taboo_words": [
+        "zero",
+        "one",
+        "bits",
+        "number",
+        "base"
+      ],
+      "source_language": "English",
+      "destination_language": "English",
+      "description": "The base-2 numeral system computers use to represent all data."
+    },
+    {
+      "keyword": "Stack",
+      "category": "CS",
+      "taboo_words": [
+        "push",
+        "pop",
+        "LIFO",
+        "data",
+        "structure"
+      ],
+      "source_language": "English",
+      "destination_language": "English",
+      "description": "A last-in-first-out data structure."
+    },
+    {
+      "keyword": "Queue",
+      "category": "CS",
+      "taboo_words": [
+        "FIFO",
+        "line",
+        "first",
+        "wait",
+        "order"
+      ],
+      "source_language": "English",
+      "destination_language": "English",
+      "description": "A first-in-first-out data structure."
+    },
+    {
+      "keyword": "Cache",
+      "category": "CS",
+      "taboo_words": [
+        "fast",
+        "memory",
+        "store",
+        "temporary",
+        "access"
+      ],
+      "source_language": "English",
+      "destination_language": "English",
+      "description": "Small fast storage that keeps frequently used data close to where it is needed."
+    },
+    {
+      "keyword": "Deadlock",
+      "category": "CS",
+      "taboo_words": [
+        "wait",
+        "lock",
+        "resource",
+        "stuck",
+        "threads"
+      ],
+      "source_language": "English",
+      "destination_language": "English",
+      "description": "A state where processes block forever, each waiting for a resource the other holds."
+    },
+    {
+      "keyword": "Big O",
+      "category": "CS",
+      "taboo_words": [
+        "complexity",
+        "time",
+        "algorithm",
+        "growth",
+        "notation"
+      ],
+      "source_language": "English",
+      "destination_language": "English",
+      "description": "Notation describing how an algorithm's cost grows with input size."
+    },
+    {
+      "keyword": "Garbage Collection",
+      "category": "CS",
+      "taboo_words": [
+        "memory",
+        "free",
+        "automatic",
+        "unused",
+        "objects"
+      ],
+      "source_language": "English",
+      "destination_language": "English",
+      "description": "Automatic reclamation of memory that a program no longer uses."
+    },
+    {
+      "keyword": "Hash",
+      "category": "Cryptography",
+      "taboo_words": [
+        "function",
+        "fixed",
+        "digest",
+        "one-way",
+        "checksum"
+      ],
+      "source_language": "English",
+      "destination_language": "English",
+      "description": "A one-way function mapping arbitrary data to a fixed-size value."
+    },
+    {
+      "keyword": "Public Key",
+      "category": "Cryptography",
+      "taboo_words": [
+        "asymmetric",
+        "private",
+        "encrypt",
+        "share",
+        "pair"
+      ],
+      "source_language": "English",
+      "destination_language": "English",
+      "description": "The shareable half of an asymmetric key pair."
+    },
+    {
+      "keyword": "Digital Signature",
+      "category": "Cryptography",
+      "taboo_words": [
+        "sign",
+        "verify",
+        "authentic",
+        "private",
+        "document"
+      ],
+      "source_language": "English",
+      "destination_language": "English",
+      "description": "A cryptographic proof that a message was created by a known sender and not altered."
+    },
+    {
+      "keyword": "Salt",
+      "category": "Cryptography",
+      "taboo_words": [
+        "random",
+        "password",
+        "hash",
+        "add",
+        "unique"
+      ],
+      "source_language": "English",
+      "destination_language": "English",
+      "description": "Random data mixed into a password before hashing to defeat precomputed attacks."
+    },
+    {
+      "keyword": "Man-in-the-Middle",
+      "category": "Cybersecurity",
+      "taboo_words": [
+        "intercept",
+        "between",
+        "communication",
+        "attacker",
+        "relay"
+      ],
+      "source_language": "English",
+      "destination_language": "English",
+      "description": "An attack where the adversary secretly relays and possibly alters communication between two parties."
+    },
+    {
+      "keyword": "DNS",
+      "category": "Networking",
+      "taboo_words": [
+        "domain",
+        "name",
+        "IP",
+        "resolve",
+        "server"
+      ],
+      "source_language": "English",
+      "destination_language": "English",
+      "description": "The system that translates human-readable names into network addresses."
+    },
+    {
+      "keyword": "Port",
+      "category": "Networking",
+      "taboo_words": [
+        "number",
+        "service",
+        "open",
+        "TCP",
+        "connection"
+      ],
+      "source_language": "English",
+      "destination_language": "English",
+      "description": "A numbered endpoint that lets one machine run many network services."
+    },
+    {
+      "keyword": "Packet",
+      "category": "Networking",
+      "taboo_words": [
+        "data",
+        "network",
+        "send",
+        "header",
+        "route"
+      ],
+      "source_language": "English",
+      "destination_language": "English",
+      "description": "A formatted unit of data carried across a network."
+    },
+    {
+      "keyword": "Latency",
+      "category": "Networking",
+      "taboo_words": [
+        "delay",
+        "time",
+        "ping",
+        "slow",
+        "response"
+      ],
+      "source_language": "English",
+      "destination_language": "English",
+      "description": "The time it takes for data to travel from source to destination."
+    },
+    {
+      "keyword": "Raspberry Pi",
+      "category": "Hardware",
+      "taboo_words": [
+        "small",
+        "computer",
+        "board",
+        "cheap",
+        "project"
+      ],
+      "source_language": "English",
+      "destination_language": "English",
+      "description": "A credit-card-sized single-board computer popular for DIY projects."
+    },
+    {
+      "keyword": "Soldering",
+      "category": "Hardware",
+      "taboo_words": [
+        "iron",
+        "metal",
+        "join",
+        "circuit",
+        "heat"
+      ],
+      "source_language": "English",
+      "destination_language": "English",
+      "description": "Joining electronic components by melting a metal alloy."
+    },
+    {
+      "keyword": "Kernel",
+      "category": "Linux",
+      "taboo_words": [
+        "core",
+        "operating",
+        "system",
+        "hardware",
+        "manage"
+      ],
+      "source_language": "English",
+      "destination_language": "English",
+      "description": "The core of an operating system that manages hardware and resources."
+    },
+    {
+      "keyword": "Terminal",
+      "category": "Linux",
+      "taboo_words": [
+        "command",
+        "shell",
+        "text",
+        "type",
+        "console"
+      ],
+      "source_language": "English",
+      "destination_language": "English",
+      "description": "A text interface for interacting with the operating system."
+    },
+    {
+      "keyword": "Sudo",
+      "category": "Linux",
+      "taboo_words": [
+        "root",
+        "permission",
+        "command",
+        "admin",
+        "run"
+      ],
+      "source_language": "English",
+      "destination_language": "English",
+      "description": "A command that lets permitted users run programs with elevated privileges."
+    },
+    {
+      "keyword": "Grep",
+      "category": "Linux",
+      "taboo_words": [
+        "search",
+        "text",
+        "pattern",
+        "command",
+        "find"
+      ],
+      "source_language": "English",
+      "destination_language": "English",
+      "description": "A command-line tool for searching text with patterns."
+    },
+    {
+      "keyword": "Open Source",
+      "category": "Open Source",
+      "taboo_words": [
+        "code",
+        "free",
+        "license",
+        "public",
+        "contribute"
+      ],
+      "source_language": "English",
+      "destination_language": "English",
+      "description": "Software whose source code anyone can inspect, modify, and share."
+    },
+    {
+      "keyword": "Pull Request",
+      "category": "Open Source",
+      "taboo_words": [
+        "merge",
+        "change",
+        "review",
+        "branch",
+        "GitHub"
+      ],
+      "source_language": "English",
+      "destination_language": "English",
+      "description": "A proposal to merge a set of changes into a repository."
+    },
+    {
+      "keyword": "Fork",
+      "category": "Open Source",
+      "taboo_words": [
+        "copy",
+        "repository",
+        "own",
+        "modify",
+        "split"
+      ],
+      "source_language": "English",
+      "destination_language": "English",
+      "description": "A personal copy of a project used to develop changes independently."
+    },
+    {
+      "keyword": "Hackathon",
+      "category": "Hacking Culture",
+      "taboo_words": [
+        "event",
+        "build",
+        "team",
+        "project",
+        "hours"
+      ],
+      "source_language": "English",
+      "destination_language": "English",
+      "description": "A time-boxed event where teams rapidly build and demo projects."
+    },
+    {
+      "keyword": "Easter Egg",
+      "category": "Hacking Culture",
+      "taboo_words": [
+        "hidden",
+        "surprise",
+        "secret",
+        "software",
+        "find"
+      ],
+      "source_language": "English",
+      "destination_language": "English",
+      "description": "A hidden feature or message tucked inside software for users to discover."
+    },
+    {
+      "keyword": "Neural Network",
+      "category": "AI",
+      "taboo_words": [
+        "brain",
+        "layers",
+        "learn",
+        "neurons",
+        "model"
+      ],
+      "source_language": "English",
+      "destination_language": "English",
+      "description": "A machine learning model made of connected layers loosely inspired by the brain."
+    },
+    {
+      "keyword": "Prompt Injection",
+      "category": "AI",
+      "taboo_words": [
+        "LLM",
+        "instruction",
+        "attack",
+        "input",
+        "model"
+      ],
+      "source_language": "English",
+      "destination_language": "English",
+      "description": "An attack that smuggles adversarial instructions into an AI model's input."
     }
   ]
 }
